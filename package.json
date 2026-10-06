@@ -1,0 +1,18 @@
+{
+  "name": "stalactite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A physically grounded stalactite growth simulation in Elm",
+  "scripts": {
+    "build": "elm make src/Main.elm --output=web/app.js --optimize",
+    "dev": "elm make src/Main.elm --output=web/app.js",
+    "format": "elm-format src --yes",
+    "serve": "node serve.js",
+    "deploy": "elm make src/Main.elm --output=web/app.js --optimize && wrangler deploy",
+    "deploy:dry": "wrangler deploy --dry-run"
+  },
+  "devDependencies": {
+    "elm": "^0.19.1-6",
+    "elm-format": "^0.8.8"
+  }
+}

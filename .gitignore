@@ -1,0 +1,14 @@
+node_modules/
+.elm-home/
+.npmcache/
+.chrome/
+elm-stuff/
+.wrangler-config/
+.wrangler-cache/
+.wrangler/
+.cf_token
+svelte/node_modules/
+svelte/.svelte-kit/
+svelte/build/
+svelte/
+web/app.js

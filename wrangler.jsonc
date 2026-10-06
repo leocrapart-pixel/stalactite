@@ -1,0 +1,14 @@
+{
+  // Stalactite is a fully static Elm app: no server-side logic is needed, so
+  // this deploys as a Worker whose only job is to serve the built assets.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "stalactite",
+  "compatibility_date": "2025-01-01",
+  "assets": {
+    "directory": "./web",
+    // The app is a single page with no client-side routes, but serving
+    // index.html for unknown paths keeps the bare domain and any stray deep
+    // link working instead of returning a bare 404.
+    "not_found_handling": "single-page-application"
+  }
+}
