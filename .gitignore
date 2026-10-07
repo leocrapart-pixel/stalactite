@@ -7,11 +7,7 @@ elm-stuff/
 .wrangler-cache/
 .wrangler/
 .cf_token
-svelte/node_modules/
-svelte/.svelte-kit/
-svelte/build/
-svelte/
 web/app.js
-angular/node_modules/
-angular/dist/
-angular/.angular/
+# The ports are their own repositories, so the outer repo does not track them.
+svelte/
+angular/
