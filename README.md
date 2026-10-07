@@ -1,14 +1,16 @@
 # Stalactite
 
 An Elm web app that grows a stalactite from the physics of calcite deposition,
-and a [SvelteKit port](svelte/) of the same thing.
+with [SvelteKit](svelte/) and [Angular](angular/) ports of the same thing.
 
-The two share the physics formula for formula. `svelte/tests/physics.test.ts`
-checks the port against values emitted from this Elm build, so the agreement is
-measured between two independent implementations rather than asserted:
+All three share the physics formula for formula, and the ports share their
+TypeScript core with each other. `tests/physics.test.ts` in each checks it
+against values emitted from this Elm build, so the agreement is measured between
+independent implementations rather than asserted:
 
 ```sh
-cd svelte && npm test        # 96 parity checks, plus renderer tests
+cd svelte  && npm test       # 96 parity checks, plus 21 renderer checks
+cd angular && npm test       # same suites, same numbers
 ```
 
 The formation is not drawn from a formula: it is grown from a calcium budget.
@@ -29,10 +31,13 @@ package cache; if `~/.elm` is not writable, set `ELM_HOME` to a local directory.
 
 ## Deployed
 
-Live at **https://stalactite.stalactite.workers.dev**
+All three run the same physics and are deployed side by side:
 
-The [SvelteKit port](https://github.com/leocrapart-pixel/stalactite-svelte) runs
-the same physics and is deployed separately.
+| | Source | Live |
+| --- | --- | --- |
+| Elm | this repo | https://stalactite.stalactite.workers.dev |
+| SvelteKit | [stalactite-svelte](https://github.com/leocrapart-pixel/stalactite-svelte) | https://stalactite-svelte.stalactite.workers.dev |
+| Angular | [stalactite-angular](https://github.com/leocrapart-pixel/stalactite-angular) | https://stalactite-angular.stalactite.workers.dev |
 
 It is a Worker serving static assets from `web/` — the app needs no server-side
 logic, so the Worker's only job is to hand back the built files. `wrangler.jsonc`

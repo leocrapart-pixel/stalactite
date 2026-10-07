@@ -12,3 +12,6 @@ svelte/.svelte-kit/
 svelte/build/
 svelte/
 web/app.js
+angular/node_modules/
+angular/dist/
+angular/.angular/
