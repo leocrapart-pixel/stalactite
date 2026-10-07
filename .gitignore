@@ -11,3 +11,4 @@ web/app.js
 # The ports are their own repositories, so the outer repo does not track them.
 svelte/
 angular/
+vue/
