@@ -1,16 +1,17 @@
 # Stalactite
 
 An Elm web app that grows a stalactite from the physics of calcite deposition,
-with [SvelteKit](svelte/) and [Angular](angular/) ports of the same thing.
+with SvelteKit, Angular and Vue ports of the same thing.
 
-All three share the physics formula for formula, and the ports share their
-TypeScript core with each other. `tests/physics.test.ts` in each checks it
+All four are formula-for-formula the same model, and the three TypeScript ports
+share one core file between them. `tests/physics.test.ts` in each checks that core
 against values emitted from this Elm build, so the agreement is measured between
 independent implementations rather than asserted:
 
 ```sh
 cd svelte  && npm test       # 96 parity checks, plus 21 renderer checks
 cd angular && npm test       # same suites, same numbers
+cd vue     && npm test       # same suites, same numbers
 ```
 
 The formation is not drawn from a formula: it is grown from a calcium budget.
@@ -38,6 +39,7 @@ All three run the same physics and are deployed side by side:
 | Elm | this repo | https://stalactite.stalactite.workers.dev |
 | SvelteKit | [stalactite-svelte](https://github.com/leocrapart-pixel/stalactite-svelte) | https://stalactite-svelte.stalactite.workers.dev |
 | Angular | [stalactite-angular](https://github.com/leocrapart-pixel/stalactite-angular) | https://stalactite-angular.stalactite.workers.dev |
+| Vue | [stalactite-vue](https://github.com/leocrapart-pixel/stalactite-vue) | https://stalactite-vue.stalactite.workers.dev |
 
 It is a Worker serving static assets from `web/` — the app needs no server-side
 logic, so the Worker's only job is to hand back the built files. `wrangler.jsonc`
