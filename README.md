@@ -1,9 +1,10 @@
 # Stalactite
 
 An Elm web app that grows a stalactite from the physics of calcite deposition,
-with SvelteKit, Angular, Vue and Dioxus (Rust/WASM) ports of the same thing.
+with SvelteKit, Angular, Vue, Dioxus and Leptos (both Rust/WASM) ports of the
+same thing.
 
-All five are formula-for-formula the same model, and the three TypeScript ports
+All six are formula-for-formula the same model, and the three TypeScript ports
 share one core file between them. The parity tests in each check that core
 against values emitted from this Elm build, so the agreement is measured between
 independent implementations rather than asserted:
@@ -13,6 +14,7 @@ cd svelte               && npm test    # 96 parity checks, plus 21 renderer chec
 cd angular              && npm test    # same suites, same numbers
 cd vue                  && npm test    # same suites, same numbers
 cd dioxus               && cargo test  # 10 parity checks, native, no browser
+cd leptos               && cargo test  # same suites, same numbers
 ```
 
 How big each one ends up, gzipped:
@@ -24,11 +26,14 @@ How big each one ends up, gzipped:
 | Elm | 43.9 kB |
 | SvelteKit | 47.0 kB |
 | Angular | 56.3 kB |
+| Leptos (Rust/WASM) | 120.6 kB |
 | Dioxus (Rust/WASM) | 230.6 kB |
 
-The Dioxus port is the largest by a wide margin — a Rust runtime and allocator
-in WebAssembly have a floor the JavaScript ports do not — and the cheapest to
-run, because the simulation is native code.
+Both Rust ports are the largest — a runtime and allocator in WebAssembly have a
+floor the JavaScript ports do not — and the cheapest to run, because the
+simulation is native code. The 110 kB between them is the framework: Dioxus ships
+a virtual-DOM mutation protocol and its interpreter, Leptos clones templates and
+touches nodes directly.
 
 The formation is not drawn from a formula: it is grown from a calcium budget.
 Water arrives at the tip, runs back **up** the surface as a thin gravity-driven
@@ -48,7 +53,7 @@ package cache; if `~/.elm` is not writable, set `ELM_HOME` to a local directory.
 
 ## Deployed
 
-All five run the same physics and are deployed side by side:
+All six run the same physics and are deployed side by side:
 
 | | Source | Live |
 | --- | --- | --- |
@@ -57,6 +62,7 @@ All five run the same physics and are deployed side by side:
 | Angular | [stalactite-angular](https://github.com/leocrapart-pixel/stalactite-angular) | https://stalactite-angular.stalactite.workers.dev |
 | Vue | [stalactite-vue](https://github.com/leocrapart-pixel/stalactite-vue) | https://stalactite-vue.stalactite.workers.dev |
 | Dioxus | [stalactite-dioxus](https://github.com/leocrapart-pixel/stalactite-dioxus) | https://stalactite-dioxus.stalactite.workers.dev |
+| Leptos | [stalactite-leptos](https://github.com/leocrapart-pixel/stalactite-leptos) | https://stalactite-leptos.stalactite.workers.dev |
 
 It is a Worker serving static assets from `web/` — the app needs no server-side
 logic, so the Worker's only job is to hand back the built files. `wrangler.jsonc`
